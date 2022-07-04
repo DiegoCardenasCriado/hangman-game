@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/icon32-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style-reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <title>.:HANGMAN GAME:.</title>
+</head>
+<body>
+    <header>
+        <img src="./img/logo-blanco.jpg" alt="LOGO ALURA">
+    </header>
+    <main class="container">
+        <section class="home-buttons">
+            <button class="btn-blue btn-start" id="btn-start">Start</button>
+            <button class="btn-white btn-new-word" id="btn-new-word">New word</button>
+        </section>
+        <section class="new-word">
+            <textarea id="txt-new-word" class="txt-input" cols="30" rows="10" placeholder="Enter a word."></textarea>
+            <div class="warningLabel">
+                <img src="./img/icon-warning.jpg" alt="WARNING ICON">
+                <p>Max. of letters 8.</p>
+            </div>
+            <div class="buttons-box">
+                <button class="btn-blue" id="btn-saveAndStart">Save and start</button>
+                <button class="btn-white" id="btn-exit-newWord">Exit</button>
+            </div>
+        </section>
+        <section class="hangman">
+            <canvas id="hangman-canvas" class="hangman-canvas" height="660px" width="900"></canvas>
+            <div class="keyboard">
+                <textarea id="txt-mobile-users" class="txt-input txt-start" cols="5" rows="2" placeholder="ENTER YOUR LETTER HERE."></textarea>
+                <div class="warningLabel">
+                    <img src="./img/icon-warning.jpg" alt="WARNING ICON">
+                    <p>MOBILE USERS.</p>
+                </div>
+            </div>
+            <div class="buttons-box">
+                <button class="btn-blue" id="btn-newGame">New Game</button>
+                <button class="btn-white" id="btn-exit-game">Exit</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© Challenge Oracle ONE - By Diego Cárdenas</p>
+        <div class="contact">
+            <ul>
+                <li>
+                    <a href="https://github.com/DiegoCardenasCriado/hangman-game" target="_blank">
+                        <img src="img/icon-github.png" alt="Icon github">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/diego-cardenas-criado/" target="_blank">
+                        <img src="img/icon-linkedin.png" alt="Icon linkedin">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="./js/game.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
