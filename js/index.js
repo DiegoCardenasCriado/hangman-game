@@ -37,8 +37,7 @@ if ( newWords ) {
 // GAME START
 btnStart.addEventListener('click', () => {
     star();
-    mobileUsers();
-    listenToKeyboard();
+    listenTxtArea();
 });
 
 // SET THE NEW WORD SECTION AS VISIBLE AND START BUTTONS AS INVISIBLE.
@@ -74,7 +73,7 @@ btnSaveAndStart.addEventListener('click', () => {
         alert('success', '🥳', `"${newWord}". Added word`);
         document.querySelector('.new-word').style.display = 'none';
         star();
-        mobileUsers();
+        listenTxtArea();
         listenToKeyboard();
     }
 });
@@ -83,8 +82,8 @@ btnExitNewWord.addEventListener('click', () => {
     location.reload();
 });
 
-// MOBILE USERS
-function mobileUsers() {
+// LISTEN TO THE TEXT AREA
+function listenTxtArea() {
     txtMobileUsers.addEventListener('input', () => {
         let input = txtMobileUsers.value; 
         // Verify textarea
@@ -106,26 +105,11 @@ function chooseSecretWord () {
     secretWord = words[Math.floor(Math.random()*words.length)];
 }
 
-// LISTEN TO THE KEYBOARD
-function listenToKeyboard() {
-    document.addEventListener('keydown', ( event ) => {
-    // GET KEY(LETTER)
-    let letter = event.key;
-    lettersValidate( letter );
-    });
-}
-
 function lettersValidate( letter ) {
     // VALIDATE IF THE LETTER HAS ALREADY BEEN ENTERED.
    if ( letters.includes(letter) ) {
     alert(`👀👉The letter "${letter}" has already been entered.👈👀`);
     } else {
-        // IGNORE ""CapsLock"" and "Backspace".
-        if ( event.keyCode === 20 || event.keyCode === 8 ) {
-            return;
-            
-        // ALLOW ONLY CAPITAL LETTERS (ASCII CODE).
-        } else if (event.keyCode >= 65 && event.keyCode <= 90 && letter === letter.toUpperCase()) {
             letters.push( letter );
             if ( (!secretWord.includes(letter) && !winner ) || totalLives <= 0 ) {
                 // INCORRECT LETTER.
@@ -134,11 +118,7 @@ function lettersValidate( letter ) {
                 // CORRECT LETTER.
                 validateWin(letter);
             }
-            
-        } else {
-            alert(`👀👉Enter only capital letters.👈👀`);
         }
-    }
 }
 
 // FUNCTION FOR GAME STARTUP
