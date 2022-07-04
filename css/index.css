@@ -161,10 +161,6 @@ footer {
         gap: 1rem;
     }
 
-    .keyboard {
-        display: none;
-    }
-
 }
 /* TABLE */
 @media screen and (max-width: 770px) {
@@ -179,10 +175,6 @@ footer {
 
     .hangman-canvas {
         max-width: 100%;
-    }
-
-    .keyboard {
-        display: block;
     }
 
     .txt-start {
@@ -200,8 +192,5 @@ footer {
 
     .btn-blue, .btn-white {
         padding: 1rem;
-    }
-    .keyboard {
-        display: block;
     }
 }
