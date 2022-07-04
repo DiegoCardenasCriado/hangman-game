@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>.:HANGMAN GAME:.</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
         <section class="hangman">
             <canvas id="hangman-canvas" class="hangman-canvas" height="660px" width="900"></canvas>
             <div class="keyboard">
-                <textarea id="txt-mobile-users" class="txt-input txt-start" cols="5" rows="2" placeholder="ENTER YOUR LETTER HERE."></textarea>
+                <textarea id="txt-keyboard-users" class="txt-input txt-start" cols="5" rows="2" placeholder="ENTER YOUR LETTER HERE."></textarea>
                 <div class="warningLabel">
                     <img src="./img/icon-warning.jpg" alt="WARNING ICON">
                     <p>TRY TO WIN!</p>
@@ -66,5 +67,6 @@
     </footer>
     <script src="./js/game.js"></script>
     <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

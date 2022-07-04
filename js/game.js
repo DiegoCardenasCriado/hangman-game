@@ -3,6 +3,7 @@ let btnNewGame = document.getElementById('btn-newGame');
 let btnExitGame = document.getElementById('btn-exit-game');
 
 btnNewGame.addEventListener('click', () => {
+    txtKeyboardUsers.focus();
     canvasHangman.clearRect(0, 0, 1200, 860);
     totalLives = 7;
     incorrectLetterPosition = 0;
@@ -64,8 +65,7 @@ function validateLost(letter) {
 
     // WHEN THE NUMBER OF LIVES EQUALS 0, THE GAME IS OVER.
     if ( totalLives <= 0 ) {
-        alert(`The secret word is "${secretWord}"`);
-        // alert('error', '😢😒You have lost!', `The secret word is "${secretWord}"`);
+        showMessage('error', '😢😒You have lost!', `The secret word is "${secretWord}"`);
         letters = [];
     }
 
@@ -102,9 +102,8 @@ function validateWin(letter) {
     // WHEN THE NUMBER OF CORRECT LETTERS EQUALS THE NUMBER OF LETTERS IN THE SECRET WORD, THE GAME ENDS.
     if ( correctLettersCount >= secretWord.length ) {
         winner = true;
-        alert(`The secret word is "${secretWord}"`);
+        showMessage('success', '😎🥳You have Won!', `The secret word is "${secretWord}"`);
         letters = [];
-        // alert('success', '😎🥳You have Won!', `The secret word is "${secretWord}"`);
     }
 }
 
@@ -165,4 +164,21 @@ function writingLetters( font, letter, x, y) {
     canvasHangman.font = font;
     canvasHangman.fillStyle = "#0A3871";
     canvasHangman.fillText(letter, x, y);
+}
+
+function showMessage( icon, title, text ) {
+    Swal.fire({
+        icon,
+        title,
+        text,
+        position: 'top-end',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        },
+        showConfirmButton: false,
+        timer: 2500
+    });
 }

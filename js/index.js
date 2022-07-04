@@ -13,7 +13,7 @@ let words = ['ALURA', 'ORACLE', 'CSS', 'HTML', 'SCRIPT', 'MOUSE', 'SOFTWARE', 'D
 document.querySelector('.new-word').style.display = 'none';
 document.querySelector('.hangman').style.display = 'none';
 // MOBILE USERS TEXTAREA.
-let txtMobileUsers = document.getElementById('txt-mobile-users');
+let txtKeyboardUsers = document.getElementById('txt-keyboard-users');
 //CANVAS HANGMAN.
 let canvasHangman = document.getElementById("hangman-canvas").getContext("2d");
 // SECTION (HOME BUTTONS).
@@ -38,12 +38,14 @@ if ( newWords ) {
 btnStart.addEventListener('click', () => {
     star();
     listenTxtArea();
+    txtKeyboardUsers.focus();
 });
 
 // SET THE NEW WORD SECTION AS VISIBLE AND START BUTTONS AS INVISIBLE.
 btnNewWord.addEventListener('click', () => {
     document.querySelector('.home-buttons').style.display = 'none';
     document.querySelector('.new-word').style.display = '';
+    txtNewWord.focus();
 });
 
 txtNewWord.addEventListener('input', () => {
@@ -51,30 +53,30 @@ txtNewWord.addEventListener('input', () => {
     // Verify textarea
     if ( input.match( notAlloweded ) ) {
         // Show warning
-        alert(`👀👉Enter only capital letters.👈👀`);
+        showMessage('warning', '🧐', `👀👉Enter only capital letters.👈👀`);
         // If the letter is not allowed, we remove it.
         txtNewWord.value = input.slice( 0, -1 );
     } else if ( input.length >=9 ) {
-        alert(`👀👉Max. of letters 8.👈👀`);
+        showMessage(`'warning', '🧐', 👀👉Max. of letters 8.👈👀`);
         txtNewWord.value = input.slice( 0, -1 );
     }
 
 });
 
 btnSaveAndStart.addEventListener('click', () => {
+    txtKeyboardUsers.focus();
     let newWord = txtNewWord.value;
     if ( words.includes(newWord) ) {
-        alert('warning', '🧐', `👀👉"${newWord}". Word already exists!👈👀`);
+        showMessage('warning', '🧐', `👀👉"${newWord}". Word already exists!👈👀`);
     } else if ( newWord.length < 3 ) {
-        alert('warning', '🧐', `👀👉"Min. of letters 3.👈👀`);
+        showMessage('warning', '🧐', `👀👉"Min. of letters 3.👈👀`);
     } else {
         words.push(newWord);
         localStorage.setItem('words', JSON.stringify(words) );
-        alert('success', '🥳', `"${newWord}". Added word`);
+        showMessage('success', '🥳', `"${newWord}". Added word`);
         document.querySelector('.new-word').style.display = 'none';
         star();
         listenTxtArea();
-        listenToKeyboard();
     }
 });
 
@@ -84,18 +86,18 @@ btnExitNewWord.addEventListener('click', () => {
 
 // LISTEN TO THE TEXT AREA
 function listenTxtArea() {
-    txtMobileUsers.addEventListener('input', () => {
-        let input = txtMobileUsers.value; 
+    txtKeyboardUsers.addEventListener('input', () => {
+        let input = txtKeyboardUsers.value; 
         // Verify textarea
         if ( input.match( notAlloweded ) ) {
             // Show warning
-            alert(`👀👉Enter only capital letters.👈👀`);
+            showMessage('warning', '🧐', '👀👉Enter only capital letters.👈👀');
             // If the letter is not allowed, we remove it.
-            txtMobileUsers.value = input.slice( 0, -1 );
+            txtKeyboardUsers.value = input.slice( 0, -1 );
         } else if ( input.length <=1 ) {
-            lettersValidate(txtMobileUsers.value);
+            lettersValidate(txtKeyboardUsers.value);
             setTimeout(() => {
-                txtMobileUsers.value = input.slice( 0, -1 );
+                txtKeyboardUsers.value = input.slice( 0, -1 );
             }, 500)
         }
     });   
@@ -108,7 +110,7 @@ function chooseSecretWord () {
 function lettersValidate( letter ) {
     // VALIDATE IF THE LETTER HAS ALREADY BEEN ENTERED.
    if ( letters.includes(letter) ) {
-    alert(`👀👉The letter "${letter}" has already been entered.👈👀`);
+    showMessage('warning', '🧐', `👀👉The letter "${letter}" has already been entered.👈👀`);
     } else {
             letters.push( letter );
             if ( (!secretWord.includes(letter) && !winner ) || totalLives <= 0 ) {
